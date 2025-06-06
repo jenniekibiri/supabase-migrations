@@ -1,6 +1,6 @@
 name: Reproduce SSH Agent Error
 
-on: [main]
+on: [workflow_dispatch]
 
 jobs:
   clone-without-ssh-agent:
