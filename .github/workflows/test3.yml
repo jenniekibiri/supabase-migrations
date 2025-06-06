@@ -1,18 +1,20 @@
-name: Supabase Migrations SSH Agent Error
+name: Reproduce Supabase SSH Agent Error
 
 on: [workflow_dispatch]
 
 jobs:
-  reproduce:
+  test-ssh-agent-error:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
       - name: Install Supabase CLI
         run: |
-          npm install -g supabase
+          brew install supabase/tap/supabase
+          supabase --version
 
-      - name: Run Supabase Remote Commit (Expect SSH Agent Error)
+      - name: Unset SSH agent and run Supabase remote commit
         run: |
           unset SSH_AUTH_SOCK
           supabase db remote commit
