@@ -1,0 +1,11 @@
+name: Reproduce SSH Agent Error
+
+on: [workflow_dispatch]
+
+jobs:
+  clone-without-ssh-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Try SSH clone without SSH agent
+        run: |
+          GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git clone git@github.com:jenniekibiri/supabase-migrations.git
