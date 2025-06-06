@@ -1,0 +1,11 @@
+name: Supabase Migrations - Reproduce SSH Error
+
+on: [workflow_dispatch]
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (will fail if SSH)
+        run: |
+          supabase db remote commit
